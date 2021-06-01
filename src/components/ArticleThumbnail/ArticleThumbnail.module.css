@@ -1,0 +1,44 @@
+.ArticleThumbnail {
+  min-width: 300px;
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 10px;
+  flex-flow: column;
+  background-color: white;
+}
+
+.ArticleThumbnail:hover {
+  cursor: pointer;
+}
+
+.ArticleThumbnail:hover h3 {
+  text-decoration: underline;
+}
+
+.imageThumbnail {
+  float: left;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.split {
+  display: none;
+}
+
+.description {
+  font-weight: 300;
+  font-size: 0.9rem;
+  margin: 10px;
+}
+
+.title {
+  margin: 10px;
+}
+
+@media only screen and (max-width: 902px) {
+  .split {
+    display: block;
+  }
+}

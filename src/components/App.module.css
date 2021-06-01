@@ -1,0 +1,11 @@
+@import "../vars.css";
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.App {
+  background-color: white;
+  height: 100%;
+  min-height: 100vh;
+}

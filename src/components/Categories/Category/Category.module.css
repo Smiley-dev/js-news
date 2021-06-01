@@ -1,0 +1,38 @@
+.Category {
+  width: 100%;
+  margin: 20px auto;
+  background-color: #efefef;
+}
+
+.articles {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.collapsed {
+  display: none;
+}
+
+.expanded {
+  display: flex;
+}
+
+.article {
+  max-width: 300px;
+  margin: 20px;
+}
+
+.categoryToggle {
+  width: 100%;
+  text-align: left;
+  font-size: 1.3rem;
+  border: none;
+  text-transform: capitalize;
+  padding: 15px;
+}
+
+.categoryToggle:hover {
+  cursor: pointer;
+}
