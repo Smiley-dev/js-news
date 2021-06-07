@@ -20,6 +20,13 @@ const Navbar = () => {
       >
         Categories
       </NavLink>
+      <NavLink
+        className={classes.Link}
+        activeClassName={classes.active}
+        to="/search"
+      >
+        Search
+      </NavLink>
     </div>
   );
 };

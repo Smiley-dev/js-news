@@ -4,11 +4,16 @@
   background-color: #efefef;
 }
 
+.articlesWrapper {
+  background-color: white;
+  position: relative;
+}
+
 .articles {
   display: flex;
   gap: 20px;
+  position: relative;
   overflow: hidden;
-  overflow-x: scroll;
 }
 
 .collapsed {

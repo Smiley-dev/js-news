@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ArticleThumbnail from "../../ArticleThumbnail/ArticleThumbnail";
 import classes from "./Category.module.css";
 import Axios from "../../../Axios";
+import ScrollButton from "../../../assets/ScrollButton/ScrollButton";
 
 const Category = ({ category }) => {
   const [news, setNews] = useState({ articles: [] });
   const [isCollapsed, setIsCollappsed] = useState(true);
+  const content = useRef(null);
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -13,7 +15,7 @@ const Category = ({ category }) => {
           params: {
             country: "us",
             category: category,
-            pageSize: 5,
+            pageSize: 10,
           },
         });
         setNews(result.data);
@@ -34,15 +36,22 @@ const Category = ({ category }) => {
       <button type="button" className={classes.categoryToggle} onClick={toggle}>
         {category}
       </button>
-      <div>
-        <div
-          className={`${classes.articles} ${
-            isCollapsed ? classes.collapsed : classes.expanded
-          }`}
-        >
-          <button style={{ position: "sticky", left: 0, top: 0 }}>Left</button>
+
+      <div
+        className={`${classes.articlesWrapper} ${
+          isCollapsed ? classes.collapsed : classes.expanded
+        }`}
+      >
+        <ScrollButton
+          direction="left"
+          element={content.current}
+          step={-10}
+          speed={25}
+          distance={100}
+        />
+        <div className={classes.articles} ref={content}>
           {news.articles.map((article) => {
-            if (article.content) {
+            if (article.content && article.publishedAt) {
               return (
                 <div className={classes.article}>
                   <ArticleThumbnail
@@ -54,10 +63,14 @@ const Category = ({ category }) => {
             }
             return null;
           })}
-          <button style={{ position: "sticky", right: 0, top: 0 }}>
-            Right
-          </button>
         </div>
+        <ScrollButton
+          direction="right"
+          element={content.current}
+          step={10}
+          speed={25}
+          distance={100}
+        />
       </div>
     </div>
   );

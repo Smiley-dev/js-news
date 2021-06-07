@@ -1,0 +1,17 @@
+.ScrollButtonLeft {
+  position: absolute;
+  height: 200px;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 2;
+}
+
+.ScrollButtonRight {
+  position: absolute;
+  height: 200px;
+  right: 0;
+  transform: translate(0, -50%);
+  top: 50%;
+  z-index: 2;
+}
