@@ -4,7 +4,7 @@ import classes from "./Category.module.css";
 import Axios from "../../../Axios";
 import ScrollButton from "../../../assets/ScrollButton/ScrollButton";
 
-const Category = ({ category }) => {
+const Category = ({ category, country }) => {
   const [news, setNews] = useState({ articles: [] });
   const [isCollapsed, setIsCollappsed] = useState(true);
   const content = useRef(null);
@@ -13,7 +13,7 @@ const Category = ({ category }) => {
       try {
         const result = await Axios.get("/", {
           params: {
-            country: "us",
+            country: country,
             category: category,
             pageSize: 10,
           },
@@ -25,7 +25,7 @@ const Category = ({ category }) => {
     };
     fetchNews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [country]);
 
   const toggle = () => {
     setIsCollappsed(!isCollapsed);

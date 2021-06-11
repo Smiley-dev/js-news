@@ -1,20 +1,20 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import classes from "./Search.module.css";
 import Axios from "../../Axios";
 import debounce from "lodash.debounce";
 import ArticleThumbnail from "../ArticleThumbnail/ArticleThumbnail";
 
-function Search() {
+function Search({ country }) {
   const [news, setNews] = useState({ articles: [] });
   const [search, setSearch] = useState("");
 
   const debouncedFetchNews = useMemo(
     () =>
-      debounce(async (search) => {
+      debounce(async (search, country) => {
         try {
           const result = await Axios.get("/", {
             params: {
-              country: "us",
+              country: country,
               q: search,
             },
           });
@@ -26,9 +26,15 @@ function Search() {
     [],
   );
 
+  useEffect(() => {
+    if (search !== "") {
+      debouncedFetchNews(search, country);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [country, search]);
+
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    debouncedFetchNews(search);
   };
 
   return (

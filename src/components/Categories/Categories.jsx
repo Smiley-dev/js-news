@@ -12,11 +12,13 @@ const categories = [
   "technology",
 ];
 
-const Categories = () => {
+const Categories = ({ country }) => {
   return (
     <div className={classes.Categories}>
       {categories.map((category) => {
-        return <Category key={category} category={category} />;
+        return (
+          <Category key={category} category={category} country={country} />
+        );
       })}
     </div>
   );
