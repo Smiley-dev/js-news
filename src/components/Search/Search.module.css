@@ -6,3 +6,10 @@
 .searchInput {
   width: 100%;
 }
+
+.searchResults {
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
