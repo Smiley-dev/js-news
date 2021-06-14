@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "../../Axios";
 import ArticleThumbnail from "../ArticleThumbnail/ArticleThumbnail";
 
-const News = ({ country }) => {
+const News = ({ country, category = "", search = "" }) => {
   const [news, setNews] = useState({ articles: [] });
 
   useEffect(() => {
@@ -12,6 +12,8 @@ const News = ({ country }) => {
         const result = await Axios.get("/", {
           params: {
             country: country,
+            category: category,
+            q: search,
           },
         });
         setNews(result.data);
@@ -20,7 +22,7 @@ const News = ({ country }) => {
       }
     };
     fetchNews();
-  }, [country]);
+  }, [country, category, search]);
 
   return (
     <div className={classes.News}>

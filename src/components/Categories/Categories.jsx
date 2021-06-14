@@ -1,5 +1,5 @@
 import React from "react";
-import Category from "./Category/Category";
+import CategoryDropdown from "./CategoryDropdown/CategoryDropdown";
 import classes from "./Categories.module.css";
 
 const categories = [
@@ -12,12 +12,17 @@ const categories = [
   "technology",
 ];
 
-const Categories = ({ country }) => {
+const Categories = ({ country, setCategory }) => {
   return (
     <div className={classes.Categories}>
       {categories.map((category) => {
         return (
-          <Category key={category} category={category} country={country} />
+          <CategoryDropdown
+            key={category}
+            category={category}
+            country={country}
+            setCategory={setCategory}
+          />
         );
       })}
     </div>

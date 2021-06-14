@@ -7,9 +7,11 @@ import Search from "./Search/Search";
 import classes from "./App.module.css";
 import { Switch, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import Category from "./Category/Category";
 
 const App = () => {
   const [selectedCountry, setSelectedCountry] = useState("gb");
+
   return (
     <div className={classes.App}>
       <BrowserRouter>
@@ -26,8 +28,15 @@ const App = () => {
           <Route path="/news/:title" component={Article} />
           <Route
             path="/categories"
+            exact
             render={(props) => (
               <Categories {...props} country={selectedCountry} />
+            )}
+          />
+          <Route
+            path="/categories/:category"
+            render={(props) => (
+              <Category {...props} country={selectedCountry} />
             )}
           />
           <Route

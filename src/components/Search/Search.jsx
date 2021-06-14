@@ -29,6 +29,8 @@ function Search({ country }) {
   useEffect(() => {
     if (search !== "") {
       debouncedFetchNews(search, country);
+    } else {
+      setNews({ articles: [] });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country, search]);
@@ -45,7 +47,7 @@ function Search({ country }) {
         onChange={handleSearch}
       />
       <div className={classes.searchResults}>
-        {news.articles.length === 0 ? (
+        {news.articles.length === 0 || search.length === 0 ? (
           <h1>Search</h1>
         ) : (
           news.articles.map((article) => {

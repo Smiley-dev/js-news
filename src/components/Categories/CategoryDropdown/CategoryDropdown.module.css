@@ -31,11 +31,22 @@
 
 .categoryToggle {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
   font-size: 1.3rem;
   border: none;
   text-transform: capitalize;
   padding: 15px;
+}
+
+.categoryLink {
+  font-size: 0.8rem;
+}
+
+.categoryLink:hover {
+  font-size: 1rem;
 }
 
 .categoryToggle:hover {

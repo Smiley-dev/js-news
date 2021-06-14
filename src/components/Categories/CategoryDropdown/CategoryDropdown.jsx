@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import ArticleThumbnail from "../../ArticleThumbnail/ArticleThumbnail";
-import classes from "./Category.module.css";
+import classes from "./CategoryDropdown.module.css";
 import Axios from "../../../Axios";
 import ScrollButton from "../../../assets/ScrollButton/ScrollButton";
+import { Link } from "react-router-dom";
 
-const Category = ({ category, country }) => {
+const Category = ({ category, country, setCategory }) => {
   const [news, setNews] = useState({ articles: [] });
   const [isCollapsed, setIsCollappsed] = useState(true);
   const content = useRef(null);
@@ -33,10 +34,17 @@ const Category = ({ category, country }) => {
 
   return (
     <div className={classes.Category}>
-      <button type="button" className={classes.categoryToggle} onClick={toggle}>
-        {category}
-      </button>
-
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div className={classes.categoryToggle} onClick={toggle}>
+          {category}
+        </div>
+        <Link
+          className={classes.categoryLink}
+          to={{ pathname: `/categories/${category}`, state: { category } }}
+        >
+          More news...
+        </Link>
+      </div>
       <div
         className={`${classes.articlesWrapper} ${
           isCollapsed ? classes.collapsed : classes.expanded
@@ -46,30 +54,26 @@ const Category = ({ category, country }) => {
           direction="left"
           element={content.current}
           step={-10}
-          speed={25}
-          distance={100}
+          speed={15}
+          distance={300}
         />
         <div className={classes.articles} ref={content}>
           {news.articles.map((article) => {
             if (article.content && article.publishedAt) {
               return (
                 <div className={classes.article}>
-                  <ArticleThumbnail
-                    key={article.publishedAt}
-                    article={article}
-                  />
+                  <ArticleThumbnail key={article.title} article={article} />
                 </div>
               );
             }
-            return null;
           })}
         </div>
         <ScrollButton
           direction="right"
           element={content.current}
           step={10}
-          speed={25}
-          distance={100}
+          speed={15}
+          distance={300}
         />
       </div>
     </div>
